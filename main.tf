@@ -63,6 +63,9 @@ resource "aws_route_table" "public" {
         cidr_block = "0.0.0.0/0"
         gateway_id = aws_internet_gateway.igw.id
     }
+    tags = {
+        Name = "Public-RT"
+    }
 }
 
 resource "aws_route_table_association" "pub" {
@@ -77,6 +80,9 @@ resource "aws_route_table" "app-private" {
         cidr_block = "0.0.0.0/0"
         nat_gateway_id = aws_nat_gateway.nat.id
     }
+    tags = {
+        Name = "App-Private-RT"
+    }
 }
 
 resource "aws_route_table_association" "pri" {
@@ -90,6 +96,9 @@ resource "aws_route_table" "db-private" {
     route {
         cidr_block = "0.0.0.0/0"
         nat_gateway_id = aws_nat_gateway.nat.id
+    }
+    tags = {
+        Name = "DB-Private-RT"
     }
 }
 
