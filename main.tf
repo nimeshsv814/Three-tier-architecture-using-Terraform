@@ -67,7 +67,7 @@ resource "aws_route_table" "public" {
 
 resource "aws_route_table_association" "pub" {
     for_each = var.public_subnets
-    subnet_id = each.value.id
+    subnet_id = each.key.id
     route_table_id = aws_route_table.public.id
 }
 
@@ -81,7 +81,7 @@ resource "aws_route_table" "app-private" {
 
 resource "aws_route_table_association" "pri" {
     for_each = var.app_private_subnets
-    subnet_id = each.value.id
+    subnet_id = each.key.id
     route_table_id = aws_route_table.app-private.id
 }
 
@@ -95,7 +95,7 @@ resource "aws_route_table" "db-private" {
 
 resource "aws_route_table_association" "db-pri" {
     for_each = var.db_private_subnets
-    subnet_id = each.value.id
+    subnet_id = each.key.id
     route_table_id = aws_route_table.db-private.id
 }
 
